@@ -1,0 +1,17 @@
+import numpy as np
+
+def smape(y_true: np.array, y_pred: np.array) -> float:
+    """
+    Calculate the Symmetric Mean Absolute Percentage Error (sMAPE) between two arrays.
+
+    Args:
+    y_true (np.array): The true values.
+    y_pred (np.array): The predicted values.
+
+    Returns:
+    float: The calculated sMAPE value.
+    """
+    denominator = np.abs(y_true) + np.abs(y_pred)
+    safe_denominator = np.where(denominator == 0, 1, denominator)  # Avoid division by zero
+    diff = 2 * np.abs(y_true - y_pred) / safe_denominator
+    return np.mean(diff)
