@@ -6,7 +6,8 @@ def fillna_with_mean(
         df: pd.DataFrame, target: str, group: str
 ) -> pd.DataFrame:
     """
-        Fills NaN values in the 'target' column of the DataFrame 'df' with the mean values of their respective groups defined by the 'group' column. Rounded down to the nearest whole number.
+        Fills NaN values in the 'target' column of the DataFrame 'df' with the mean values of their respective groups.
+        Rounded down to the nearest whole number.
 
         Parameters:
         df (pd.DataFrame): DataFrame with data
@@ -27,7 +28,5 @@ def fillna_with_mean(
         lambda row: np.floor(group_means[row[group]]) if pd.isnull(row[target]) else row[target],
         axis=1
     )
-
-    return df_copy
 
     return df_copy
